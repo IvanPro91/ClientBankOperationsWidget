@@ -5,17 +5,15 @@ def filter_by_state(list_data:list[dict], state:str="EXECUTED") -> list[dict]:
     у которых ключ state соответствует указанному значению.
     :param list_data: Список словарей
     :param state: Значение для ключа
-    :return:
+    :return: Список словарей отсортированные по ключу
     """
-    r = [l for l in list_data if l['state'] == state]
-    print(r)
-    pass
+    return [l for l in list_data if l['state'] == state]
 
-def sort_by_date(list_data:list[dict], sort_reverse:bool=True):
+def sort_by_date(list_data:list[dict], sort_reverse:bool=True) -> list[dict]:
     """
     Функция возвращает новый список, отсортированный по дате (date).
     :param list_data: Список словарей
     :param sort_reverse: Порядок сортировки
     :return: Возврат отсортированного листа со списком
     """
-    pass
+    return sorted(list_data, key=lambda x: x['date'], reverse=sort_reverse)
