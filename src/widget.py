@@ -30,5 +30,7 @@ def get_date(date: str) -> str:
     :param date: строка например 2025-01-27T13:37:18.671407
     :return: ДД.ММ.ГГГГ
     """
+    if len(date) == 0:
+        return ""
     f_date = datetime.fromisoformat(date)
     return f_date.strftime("%d.%m.%Y")
