@@ -20,4 +20,6 @@ def get_mask_account(number_account: str) -> str:
     :param number_account: номер счета
     :return: маска
     """
+    if len(number_account) == 0:
+        return ""
     return f"**{number_account[len(number_account) - 4:]}"
