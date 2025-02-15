@@ -1,7 +1,7 @@
-from typing import Generator
+from typing import Generator, Iterator
 
 
-def filter_by_currency(list_data: list[dict], currency: str) -> Generator:
+def filter_by_currency(list_data: list[dict], currency: str) -> Iterator[dict]:
     """
     Функция фильтрует по ключу currency в списке словарей
     :param list_data: Список словарей
@@ -26,7 +26,9 @@ def transaction_descriptions(list_data: list[dict]) -> Generator:
     """
     if len(list_data) == 0:
         raise ValueError("Error length `list_data`")
-    return (transaction["description"] for transaction in list_data)
+
+    for transaction in list_data:
+        yield transaction["description"]
 
 
 def card_number_generator(start: int, stop: int) -> list:
