@@ -6,7 +6,7 @@ def account_card(card_number: str) -> str:
     """
     len_number = len(card_number)
     if len_number != 20:
-        raise Exception(f"Invalid length card number: len = {len_number} waiting for 20")
+        raise ValueError(f"Invalid length card number: len = {len_number} waiting for 20")
 
     result = []
     starts_mask = "*" * (len(card_number) - 10)
@@ -26,5 +26,5 @@ def get_mask_account(number_account: str) -> str:
     """
     len_number = len(number_account)
     if len_number != 16:
-        raise Exception(f"Invalid length card number: len = {len_number} waiting for 16")
+        raise ValueError(f"Invalid length card number: len = {len_number} waiting for 16")
     return f"**{number_account[len(number_account) - 4:]}"
