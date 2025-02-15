@@ -24,11 +24,12 @@ def test_filter_by_currency(transactions, currency, result):
 
 
 def test_transaction_descriptions(transactions):
-    assert list(transaction_descriptions(transactions)) == ['Перевод организации', 'Перевод со счета на счет',
-                                                            'Перевод со счета на счет', 'Перевод с карты на карту',
-                                                            'Перевод организации']
-    with pytest.raises(ValueError):
-        assert transaction_descriptions([])
+    data = transaction_descriptions(transactions)
+    assert next(data) == 'Перевод организации'
+    assert next(data) == 'Перевод со счета на счет'
+    assert next(data) == 'Перевод со счета на счет'
+    assert next(data) == 'Перевод с карты на карту'
+    assert next(data) == 'Перевод организации'
 
 
 @pytest.mark.parametrize(

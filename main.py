@@ -1,4 +1,4 @@
-from src.generators import transaction_descriptions
+from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 
 default_data = [
     {
@@ -49,5 +49,13 @@ default_data = [
 ]
 
 if __name__ == "__main__":
-    transaction_desc = list(transaction_descriptions(default_data))
-    print(transaction_desc)
+    descriptions = transaction_descriptions(default_data)
+    for _ in range(5):
+        print(next(descriptions))
+
+    usd_transactions = filter_by_currency(default_data, currency="RUB")
+    for _ in range(2):
+        print(next(usd_transactions))
+
+    for card_number in card_number_generator(1, 5):
+        print(card_number)
