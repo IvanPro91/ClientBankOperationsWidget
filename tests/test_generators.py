@@ -10,26 +10,43 @@ from src.generators import card_number_generator, filter_by_currency, transactio
         ("RUB", [873106923, 594226727]),
     ],
 )
-def test_filter_by_currency(transactions, currency, result):
+def test_filter_by_currency(transactions: list[dict], currency: str, result: list[int]) -> None:
+    """
+    Функция тестирования currency code
+    :param transactions: Тестовые данные
+    :param currency: Значение currency code параметризации
+    :param result: Значение возврата параметризации
+    :return: None
+    """
     data_list = list(filter_by_currency(transactions, currency))
     list_ids = [int(ids["id"]) for ids in data_list]
 
     assert list_ids == result
 
     with pytest.raises(ValueError):
-        assert filter_by_currency([], currency=currency)
+        filter_by_currency([], currency=currency)
 
     with pytest.raises(ValueError):
-        assert filter_by_currency([], currency="")
+        filter_by_currency(transactions, currency="")
 
 
-def test_transaction_descriptions(transactions):
+def test_transaction_descriptions(transactions: list[dict]) -> None:
+    """
+    Функция тестирования описания транзакций
+    :param transactions: Тестовые данные
+    :return: None
+    """
     data = transaction_descriptions(transactions)
-    assert next(data) == 'Перевод организации'
-    assert next(data) == 'Перевод со счета на счет'
-    assert next(data) == 'Перевод со счета на счет'
-    assert next(data) == 'Перевод с карты на карту'
-    assert next(data) == 'Перевод организации'
+    error_transaction = transaction_descriptions([])
+
+    assert next(data) == "Перевод организации"
+    assert next(data) == "Перевод со счета на счет"
+    assert next(data) == "Перевод со счета на счет"
+    assert next(data) == "Перевод с карты на карту"
+    assert next(data) == "Перевод организации"
+
+    with pytest.raises(ValueError):
+        next(error_transaction)
 
 
 @pytest.mark.parametrize(
@@ -40,7 +57,14 @@ def test_transaction_descriptions(transactions):
         (9991, 9993, ["0000 0000 0000 9991", "0000 0000 0000 9992"]),
     ],
 )
-def test_card_number_generator(start, stop, result):
+def test_card_number_generator(start: int, stop: int, result: list[str]) -> None:
+    """
+    Функция тестирования генерации номеров карт
+    :param start: Стартовое значение параметризации
+    :param stop: Конечное значение параметризации
+    :param result: Значение результата с параметризации
+    :return: None
+    """
     assert card_number_generator(start, stop) == result
     with pytest.raises(ValueError):
-        assert card_number_generator(0, 0)
+        card_number_generator(0, 0)
