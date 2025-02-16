@@ -9,9 +9,9 @@ def filter_by_currency(list_data: list[dict], currency: str) -> Iterator[dict]:
     :return: Отфильтрованный генератор
     """
     if len(list_data) == 0:
-        raise ValueError("Error length `list_data`")
+        raise ValueError("Error length 'list_data'")
     if len(currency) == 0:
-        raise ValueError("Error no data in `currency`")
+        raise ValueError("Error no data in 'currency'")
     c_generator = (
         transaction for transaction in list_data if transaction["operationAmount"]["currency"]["code"] == currency
     )
@@ -24,8 +24,9 @@ def transaction_descriptions(list_data: list[dict]) -> Generator:
     :param list_data: Список словарей
     :return: Генератор с описанием транзакции
     """
+    print(len(list_data))
     if len(list_data) == 0:
-        raise ValueError("Error length `list_data`")
+        raise ValueError("Error length 'list_data'")
 
     for transaction in list_data:
         yield transaction["description"]

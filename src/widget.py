@@ -17,11 +17,11 @@ def mask_account_card(card_number: str) -> str:
         elif len(number) == 16:
             mask_number = get_mask_account(number)
         else:
-            return "Неверный формат входного параметра"
+            raise ValueError("Неверный формат входного параметра")
         res = " ".join(div_type_card[:-1]) + " " + mask_number
         return res
     except Exception as err:
-        return f"Error: {str(err)}"
+        raise ValueError(f"Error: {str(err)}")
 
 
 def get_date(date: str) -> str:
@@ -30,7 +30,8 @@ def get_date(date: str) -> str:
     :param date: строка например 2025-01-27T13:37:18.671407
     :return: ДД.ММ.ГГГГ
     """
-    if len(date) == 0:
-        raise Exception("Invalid input ISO format datetime")
-    f_date = datetime.fromisoformat(date)
-    return f_date.strftime("%d.%m.%Y")
+    try:
+        f_date = datetime.fromisoformat(date)
+        return f_date.strftime("%d.%m.%Y")
+    except Exception:
+        raise ValueError("Invalid input ISO format datetime")
