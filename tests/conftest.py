@@ -66,7 +66,7 @@ def transactions() -> list[dict]:
 
 
 @pytest.fixture
-def filter_data_and_sorted() -> list[dict]:
+def static_data() -> list[dict]:
     """
     Функция возврата статических данных для тестирования по дате и сортировке
     :return: Тестовые данные для сортировки по дате

@@ -10,7 +10,7 @@ def test_decorators() -> None:
     :return: None
     """
 
-    @log(filename="error_log.txt")
+    @log(filename="errors_log.txt")
     def num_div(x: int, y: int) -> float:
         return x / y
 
