@@ -1,13 +1,8 @@
-from src.decorators import log
-
-
-# Реализация вызова функции с декоратором
-@log(filename="errors_log.txt")
-def num_div(x: int, y: int) -> float:
-    return x / y
-
+from src.external_api import convert_currency
+from src.utils import read_json_file
 
 if __name__ == "__main__":
-    num_div(6, 2)
-    num_div(600, 22)
-    num_div(2, 0)
+    list_data = read_json_file("data/operations.json")
+    for data in list_data:
+        sum_currency = convert_currency(data)
+        print(sum_currency)
