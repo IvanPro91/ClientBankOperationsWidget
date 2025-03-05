@@ -1,5 +1,5 @@
+import os
 from functools import wraps
-from pathlib import Path
 from typing import Any
 
 
@@ -13,7 +13,7 @@ def log(filename: Any = None) -> Any:
     def log_decorator(func: Any) -> Any:
         @wraps(func)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
-            path = Path().resolve()
+            path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
             try:
                 write_log = f"{func.__name__} ok"
                 func(*args, **kwargs)
@@ -29,7 +29,7 @@ def log(filename: Any = None) -> Any:
                 if not filename:
                     print(write_log)
                 else:
-                    with open(filename, mode="a") as f:
+                    with open(f"{path}/log/{filename}", mode="a") as f:
                         f.write(write_log + "\n")
                 raise err
 
