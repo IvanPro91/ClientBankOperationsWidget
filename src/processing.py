@@ -6,7 +6,7 @@ def filter_by_state(list_data: list[dict], state: str = "EXECUTED") -> list[dict
     :param state: Значение для ключа
     :return: Список словарей отсортированные по ключу
     """
-    return [dict_data_state for dict_data_state in list_data if dict_data_state["state"] == state]
+    return [dict_data_state for dict_data_state in list_data if dict_data_state.get("state", "") == state]
 
 
 def sort_by_date(list_data: list[dict], sort_reverse: bool = True) -> list[dict]:
