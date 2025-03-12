@@ -66,6 +66,21 @@ def transactions() -> list[dict]:
 
 
 @pytest.fixture
+def current_re_filter() -> list[dict]:
+    return [
+        {
+            "date": "2018-08-19T04:27:37.904916",
+            "description": "Перевод с карты на карту",
+            "from": "Visa Classic 6831982476737658",
+            "id": 895315941,
+            "operationAmount": {"amount": "56883.54", "currency": {"code": "USD", "name": "USD"}},
+            "state": "EXECUTED",
+            "to": "Visa Platinum 8990922113665229",
+        }
+    ]
+
+
+@pytest.fixture
 def static_data() -> list[dict]:
     """
     Функция возврата статических данных для тестирования по дате и сортировке

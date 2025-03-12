@@ -12,9 +12,9 @@ def mask_account_card(card_number: str) -> str:
     try:
         div_type_card = card_number.split()
         number = div_type_card[-1:][0]
-        if len(number) == 20:
+        if len(number) == 16:
             mask_number = account_card(number)
-        elif len(number) == 16:
+        elif len(number) == 20:
             mask_number = get_mask_account(number)
         else:
             raise ValueError("Неверный формат входного параметра")
