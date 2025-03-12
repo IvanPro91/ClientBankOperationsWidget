@@ -13,7 +13,10 @@ def filter_by_currency(list_data: list[dict], currency: str) -> Iterator[dict]:
     if len(currency) == 0:
         raise ValueError("Error no data in 'currency'")
     c_generator = (
-        transaction for transaction in list_data if transaction["operationAmount"]["currency"]["code"] == currency
+        transaction
+        for transaction in list_data
+        if transaction.get("operationAmount", {}).get("currency", {}).get("code", {}) == currency
+        or transaction.get("currency_code", {}) == currency
     )
     return c_generator
 
