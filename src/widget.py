@@ -26,7 +26,7 @@ def mask_account_card(card_number: str) -> str:
 
 def get_date(date: str) -> str:
     """
-    Функция преобразования даты в нужный формат с помощью datetima
+    Функция преобразования даты в нужный формат с помощью datetime
     :param date: строка например 2025-01-27T13:37:18.671407
     :return: ДД.ММ.ГГГГ
     """
